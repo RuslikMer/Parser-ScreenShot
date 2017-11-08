@@ -126,7 +126,10 @@ namespace Romanov
 
                     //сохранение отчета
                     excelApp.DisplayAlerts = false;
-                    workSheet.SaveAs(string.Format(@"{0}\Test.xlsx", Environment.CurrentDirectory));
+                    Directory.CreateDirectory("C:\\Users\\r.merikanov\\Test");
+                    workSheet.SaveAs(string.Format("C:\\Users\\r.merikanov\\Test\\Test.xlsx", Environment.CurrentDirectory));
+
+                    //workSheet.SaveAs(string.Format(@"{0}\Test.xlsx", Environment.CurrentDirectory));
                     Console.ReadKey();
                 }
             }
