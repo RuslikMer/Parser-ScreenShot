@@ -38,21 +38,21 @@ namespace Romanov
 
                     Actions actions = new Actions(driver);
                     
-                    var age = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@id=\"site\"]/section/div/div/div/div/div[2]/form/div[2]/div[1]/div/div[2]/div/div[1]/div/div")));
+                    var age = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@class=\"choices__inner\"]/div/div")));
                     age.Click();
 
-                    age = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@id=\"site\"]/section/div/div/div/div/div[2]/form/div[2]/div[1]/div/div[2]/div/div[2]/input")));
+                    age = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@class=\"page-enter__frame-content\"]/form/div[2]/div[1]/div/div[2]/div/div[2]/input")));
                     age.SendKeys("18");
                     SendKeys.SendWait("{ENTER}");
 
-                    var country = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@id=\"site\"]/section/div/div/div/div/div[2]/form/div[2]/div[2]/div/div[2]/div/div[1]/div/div")));
-                    country.Click();
+                    var country = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@class=\"page-enter__frame-content\"]/form/div[2]/div[2]/div/div[2]/div/div[1]/div/div")));
+                    country.Click();                                                                                         
 
-                    country = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@id=\"site\"]/section/div/div/div/div/div[2]/form/div[2]/div[2]/div/div[2]/div/div[2]/input")));
-                    country.SendKeys("Russia");
+                    country = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@class=\"page-enter__frame-content\"]/form/div[2]/div[2]/div/div[2]/div/div[2]/input")));
+                    country.SendKeys("Russia");                                                                            
                     SendKeys.SendWait("{ENTER}");
 
-                    var login = driver.FindElementByXPath("//*[@id=\"site\"]/section/div/div/div/div/div[2]/form/div[3]/div[2]/button/div/div[2]/div/span");
+                    var login = driver.FindElementByXPath("//*[@class=\"page-enter__frame-content\"]/form/div[3]/div[2]/button/div/div[2]/div/span");
                     login.Click();
 
                     var label = driver.SwitchTo().Window(driver.WindowHandles.ToList().First()).Url; ;
