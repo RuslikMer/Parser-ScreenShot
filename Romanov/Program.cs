@@ -47,7 +47,7 @@ namespace Romanov
 
                     var country = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@class=\"page-enter__frame-content\"]/form/div[2]/div[2]/div/div[2]/div/div[1]/div/div")));
                     country.Click();                                                                                         
-
+                    //ffffdsfdfdsfsdfsf
                     country = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@class=\"page-enter__frame-content\"]/form/div[2]/div[2]/div/div[2]/div/div[2]/input")));
                     country.SendKeys("Russia");                                                                            
                     SendKeys.SendWait("{ENTER}");
