@@ -54,7 +54,7 @@ namespace Romanov
                     var login = driver.FindElementByXPath("//*[@class=\"page-enter__frame-content\"]/form/div[3]/div[2]/button/div/div[2]/div/span");
                     login.Click();
 
-                    var label = driver.SwitchTo().Window(driver.WindowHandles.ToList().First()).Url; ;
+                    var label = driver.SwitchTo().Window(driver.WindowHandles.ToList().First()).Url; 
 
 
                     var Results = new List<Test>
