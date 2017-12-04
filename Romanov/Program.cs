@@ -37,7 +37,15 @@ namespace Romanov
                     driver.Manage().Window.Maximize();
 
                     Actions actions = new Actions(driver);
+                    string screenname = "";
+                    Random randscreenname = new Random();
+                    for (int v = 0; v < 4; v++)
+                    {
+                        screenname += Convert.ToChar(rand.Next(65, 90));
+                    }
+
                     
+
                     var age = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@class=\"choices__inner\"]/div/div")));
                     age.Click();
 
@@ -51,11 +59,16 @@ namespace Romanov
                     country.SendKeys("Russia");                                                                            
                     SendKeys.SendWait("{ENTER}");
 
+                    var screenShot = driver.GetScreenshot();
+                    screenShot.SaveAsFile("C:\\Users\\Stefan-PC\\Documents\\Test\\" + screenname + ".jpg", ScreenshotImageFormat.Png);
+
                     var login = driver.FindElementByXPath("//*[@class=\"page-enter__frame-content\"]/form/div[3]/div[2]/button/div/div[2]/div/span");
                     login.Click();
 
-                    var label = driver.SwitchTo().Window(driver.WindowHandles.ToList().First()).Url; 
+                    var label = driver.SwitchTo().Window(driver.WindowHandles.ToList().First()).Url;
 
+                    var screenShots = driver.GetScreenshot();
+                    screenShots.SaveAsFile("C:\\Users\\Stefan-PC\\Documents\\Test\\" + screenname + "1.jpg", ScreenshotImageFormat.Png);
 
                     var Results = new List<Test>
                     {
