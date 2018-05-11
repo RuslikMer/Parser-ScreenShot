@@ -43,9 +43,9 @@ namespace Romanov
 
             for (int k = 0; k <= i; k++)
             {
-                //IJavaScriptExecutor js = driver;
+                IJavaScriptExecutor js = driver;
                 string x = Convert.ToString(w * k);
-                ((IJavaScriptExecutor)driver).ExecuteScript("scroll(0, "+x+")");
+                js.ExecuteScript("scroll(0, "+x+")");
                 Screen();
                 Task.Delay(500).Wait();
             }
