@@ -19,18 +19,14 @@ namespace Romanov
         public string path { set; get; }
         public double i { set; get; }
         TimeSpan timeout = new TimeSpan(00, 00, 45);
-
         
         public Fact(FirefoxDriver driver, string Project)
         {
             this.driver = driver;
             this.Project = Project;
-            //this.w = w;
-            //this.i = i;
+            
         }
-        //public Fact()
-        //{
-        //}
+        
         void GetSize()
         {
             //определение размера
@@ -89,11 +85,6 @@ namespace Romanov
             //Encoding ascii = Encoding.ASCII;
 
             char[] ch = new Char[] { '|', '*', '"', '?' };
-            //string[] arr = new string[]
-            //{
-            //    "|",
-            //    "?"
-            //};
 
             foreach (char s in ch)
             {

@@ -31,8 +31,8 @@ namespace Romanov
                 sURL = "sitemap";
 
                 ChromePars();
-                //FirefoxPars();
-                //IEPars();
+                FirefoxPars();
+                IEPars();
 
                 void ChromePars()
                 {
@@ -49,21 +49,21 @@ namespace Romanov
                     }
                 }
 
-                //void FirefoxPars()
-                //{
-                //    //FirefoxOptions fo = new FirefoxOptions();
-                //    //FirefoxProfile Fp = new FirefoxProfile();
-                //    //Fp.AddExtension(@"C:\Users\Adblocker-Genesis-Plus_v1.0.6.crx");
+                void FirefoxPars()
+                {
+                    //FirefoxOptions fo = new FirefoxOptions();
+                    //FirefoxProfile Fp = new FirefoxProfile();
+                    //Fp.AddExtension(@"C:\Users\Adblocker-Genesis-Plus_v1.0.6.crx");
 
-                //    using (var driver = new FirefoxDriver())
-                //    {
-                //        Fact act = new Fact(driver, Project);
-                //        act.Dir();
-                //        FParser pars = new FParser(driver, Project, URL, sURL);
-                //        pars.GoUrl();
-                //        pars.Parsing();
-                //    }
-                //}
+                    using (var driver = new FirefoxDriver())
+                    {
+                        Fact act = new Fact(driver, Project);
+                        act.Dir();
+                        FParser pars = new FParser(driver, Project, URL, sURL);
+                        pars.GoUrl();
+                        pars.Parsing();
+                    }
+                }
 
                 void IEPars()
                 {
@@ -71,7 +71,7 @@ namespace Romanov
                     {
                         IEact act = new IEact(driver, Project);
                         act.Dir();
-                        IEParser pars = new IEParser(driver, Project);
+                        IEParser pars = new IEParser(driver, Project, URL, sURL);
                         pars.GoUrl();
                         pars.Parsing();
                     }
