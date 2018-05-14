@@ -51,22 +51,13 @@ namespace ParserNunit
 
             for (int k = 0; k <= i; k++)
             {
+
                 IJavaScriptExecutor js = driver;
                 string x = Convert.ToString(w * k);
-                //((IJavaScriptExecutor)driver).ExecuteScript("scroll(0, " + x + ")");
+                //js.ExecuteScript("scroll(0, " + x + ")");
                 ((IJavaScriptExecutor)driver).ExecuteScript("window.scrollTo(0," + x + ");");
-
-
-                //if ( driver.ExecuteScript("window.scrollTo(0," + x + ");")is false)
-                //{
-                //    ((IJavaScriptExecutor)driver).ExecuteScript("window.scrollTo(0," + x + ");");
-                //}
-                //else
-                //{
-                //    rdBtn_Sex.ElementAt(0).Click();
-                //}
                 Screen();
-                Task.Delay(500).Wait();
+                Task.Delay(400).Wait();
             }
         }
 
@@ -98,16 +89,8 @@ namespace ParserNunit
 
         void NewDirectory()
         {
-            //string Url = driver.SwitchTo().Window(driver.WindowHandles.ToList().Last()).Url;
             string T = driver.SwitchTo().Window(driver.WindowHandles.ToList().Last()).Title;
-            //Encoding ascii = Encoding.ASCII;
-
             char[] ch = new Char[] { '|', '*', '"', '?' };
-            //string[] arr = new string[]
-            //{
-            //    "|",
-            //    "?"
-            //};
 
             foreach (char s in ch)
             {

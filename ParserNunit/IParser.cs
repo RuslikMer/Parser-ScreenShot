@@ -49,6 +49,8 @@ namespace ParserNunit
             if (k == (urls.Count - 1))
             {
                 string url = Convert.ToString(urls[k]);
+                driver.Close();
+                driver = new InternetExplorerDriver();
                 driver.Navigate().GoToUrl(url);
             }
             else if (k == urls.Count)
@@ -58,6 +60,8 @@ namespace ParserNunit
             else
             {
                 string url = Convert.ToString(urls[k + 1]);
+                driver.Close();
+                driver = new InternetExplorerDriver();
                 driver.Navigate().GoToUrl(url);
             }
         }
@@ -97,7 +101,7 @@ namespace ParserNunit
                                 collections = collections.Remove(collections.IndexOf(s));
                             }
                         }
-                        if (collections.StartsWith("http://www.eurofox.at/") == true && urls.Contains(collections) == false)
+                        if (collections.StartsWith(URL) == true && urls.Contains(collections) == false)
                         {
                             urls.Add(collections);
 

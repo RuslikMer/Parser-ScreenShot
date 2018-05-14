@@ -95,7 +95,7 @@ namespace ParserNunit
                                 collections = collections.Remove(collections.IndexOf(s));
                             }
                         }
-                        if (collections.StartsWith("http://xn--e1aliadgiil4bl.xn--p1ai/") == true && urls.Contains(collections) == false)
+                        if (collections.StartsWith(URL) == true && urls.Contains(collections) == false)
                         {
                             urls.Add(collections);
 

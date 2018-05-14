@@ -96,7 +96,7 @@ namespace ParserNunit
                                 collections = collections.Remove(collections.IndexOf(s));
                             }
                         }
-                        if (collections.StartsWith("http://www.eurofox.at/") == true && urls.Contains(collections) == false)
+                        if (collections.StartsWith(URL) == true && urls.Contains(collections) == false)
                         {
                             urls.Add(collections);
 
