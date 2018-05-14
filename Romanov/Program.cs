@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
+using OpenQA.Selenium.Edge;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System.Data.OleDb;
@@ -30,9 +31,22 @@ namespace Romanov
                 URL = "http://www.eurofox.at/";
                 sURL = "sitemap";
 
-                ChromePars();
-                FirefoxPars();
+                //ChromePars();
+                //FirefoxPars();
                 IEPars();
+                EdgePars();
+
+                void EdgePars()
+                {
+                    using (var driver = new EdgeDriver())
+                    {
+                        EAct act = new EAct(driver, Project);
+                        act.Dir();
+                        EParser pars = new EParser(driver, Project, URL, sURL);
+                        pars.GoUrl();
+                        pars.Parsing();
+                    }
+                }
 
                 void ChromePars()
                 {

@@ -1,5 +1,5 @@
 ﻿using System;
-using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Edge;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Interactions;
@@ -8,30 +8,24 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Text;
-using OpenQA.Selenium.IE;
 
 namespace Romanov
 {
-    class IEact
+    class EAct
     {
-        public InternetExplorerDriver driver { set; get; }
+        public EdgeDriver driver { set; get; }
         public string Project { set; get; }
         public int w { set; get; }
         public string path { set; get; }
         public double i { set; get; }
         TimeSpan timeout = new TimeSpan(00, 00, 45);
 
-
-        public IEact(InternetExplorerDriver driver, string Project)
+        public EAct(EdgeDriver driver, string Project)
         {
             this.driver = driver;
             this.Project = Project;
-            //this.w = w;
-            //this.i = i;
+
         }
-        //public IEact()
-        //{
-        //}
 
         void GetSize()
         {
@@ -50,11 +44,9 @@ namespace Romanov
 
             for (int k = 0; k <= i; k++)
             {
-                //IJavaScriptExecutor js = driver;
+                IJavaScriptExecutor js = driver;
                 string x = Convert.ToString(w * k);
-                //js.ExecuteScript("scroll(0, " + x + ")");
-                ((IJavaScriptExecutor)driver).ExecuteScript("window.scrollTo(0," + x + ");");
-
+                js.ExecuteScript("scroll(0, " + x + ")");
                 Screen();
                 Task.Delay(500).Wait();
             }
@@ -74,7 +66,7 @@ namespace Romanov
 
         public void Dir()
         {
-            path = "Z:\\test\\test\\" + Project + "\\IE\\";
+            path = "Z:\\test\\test\\" + Project + "\\FF\\";
 
             if (Directory.Exists(path))
             {
@@ -93,11 +85,6 @@ namespace Romanov
             //Encoding ascii = Encoding.ASCII;
 
             char[] ch = new Char[] { '|', '*', '"', '?' };
-            //string[] arr = new string[]
-            //{
-            //    "|",
-            //    "?"
-            //};
 
             foreach (char s in ch)
             {
@@ -115,7 +102,7 @@ namespace Romanov
                 }
             }
 
-            path = "Z:\\test\\test\\" + Project + "\\IE\\" + T + "\\";
+            path = "Z:\\test\\test\\" + Project + "\\FF\\" + T + "\\";
 
             try
             {
