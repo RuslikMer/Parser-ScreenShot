@@ -65,7 +65,7 @@ namespace ParserNunit
 
         public void Dir()
         {
-            path = "Z:\\test\\test\\" + Project + "\\FF\\";
+            path = "Z:\\test\\test\\" + Project + "\\EDGE\\";
 
             if (Directory.Exists(path))
             {
@@ -101,7 +101,7 @@ namespace ParserNunit
                 }
             }
 
-            path = "Z:\\test\\test\\" + Project + "\\FF\\" + T + "\\";
+            path = "Z:\\test\\test\\" + Project + "\\EDGE\\" + T + "\\";
 
             try
             {

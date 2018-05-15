@@ -48,6 +48,8 @@ namespace ParserNunit
             if (k == (urls.Count - 1))
             {
                 string url = Convert.ToString(urls[k]);
+                //driver.Close();
+                //driver = new EdgeDriver(@"C:\Users\r.merikanov\Downloads");
                 driver.Navigate().GoToUrl(url);
             }
             else if (k == urls.Count)
@@ -57,6 +59,8 @@ namespace ParserNunit
             else
             {
                 string url = Convert.ToString(urls[k + 1]);
+                //driver.Close();
+                //driver = new EdgeDriver(@"C:\Users\r.merikanov\Downloads");
                 driver.Navigate().GoToUrl(url);
             }
         }
