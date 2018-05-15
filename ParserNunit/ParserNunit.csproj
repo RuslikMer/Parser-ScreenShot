@@ -67,6 +67,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EParser.cs" />
+    <Compile Include="ESaS.cs" />
     <Compile Include="FParser.cs" />
     <Compile Include="FSaS.cs" />
     <Compile Include="GParser.cs" />

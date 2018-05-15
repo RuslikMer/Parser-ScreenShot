@@ -8,6 +8,7 @@ using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.IE;
+using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.PhantomJS;
 using OpenQA.Selenium.Support.UI;
 using System.Reflection;
@@ -48,40 +49,40 @@ namespace ParserNunit
             // ТУТ КОД
         }
 
-        //[Test]
-        //public void GC()
-        //{
-        //    ChromeOptions co = new ChromeOptions();
-        //    co.AddExtension(@"C:\Users\Adblocker-Genesis-Plus_v1.0.6.crx");
+        [Test]
+        public void GC()
+        {
+            ChromeOptions co = new ChromeOptions();
+            co.AddExtension(@"C:\Users\Adblocker-Genesis-Plus_v1.0.6.crx");
 
-        //    //using (var driver = new ChromeDriver(co))
-        //    //{
-        //        var driver = new ChromeDriver(co);
-        //        GSaS act = new GSaS(driver, Project);
-        //        act.Dir();
-        //        GParser pars = new GParser(driver, Project, URL, sURL);
-        //        pars.GoUrl();
-        //        pars.Parsing();
-        //    //}
-        //    Assert.AreEqual(pars.a, pars.urls.Count);
+            //using (var driver = new ChromeDriver(co))
+            //{
+            var driver = new ChromeDriver(co);
+            GSaS act = new GSaS(driver, Project);
+            act.Dir();
+            GParser pars = new GParser(driver, Project, URL, sURL);
+            pars.GoUrl();
+            pars.Parsing();
+            //}
+            Assert.AreEqual(pars.a, pars.urls.Count);
 
-        //}
+        }
 
-        //[Test]
-        //public void FF()
-        //{
-        //    //using (var driver = new FirefoxDriver())
-        //    //{
-        //        var driver = new FirefoxDriver();
-        //        FSaS act = new FSaS(driver, Project);
-        //        act.Dir();
-        //        FParser pars = new FParser(driver, Project, URL, sURL);
-        //        pars.GoUrl();
-        //        pars.Parsing();
-        //    //}
-        //    Assert.AreEqual(pars.a, pars.urls.Count);
+        [Test]
+        public void FF()
+        {
+            //using (var driver = new FirefoxDriver())
+            //{
+            var driver = new FirefoxDriver();
+            FSaS act = new FSaS(driver, Project);
+            act.Dir();
+            FParser pars = new FParser(driver, Project, URL, sURL);
+            pars.GoUrl();
+            pars.Parsing();
+            //}
+            Assert.AreEqual(pars.a, pars.urls.Count);
 
-        //}
+        }
 
         [Test]
         public void IE()
@@ -94,6 +95,21 @@ namespace ParserNunit
                 IParser pars = new IParser(driver, Project, URL, sURL);
                 pars.GoUrl();
                 pars.Parsing();
+            //}
+            Assert.AreEqual(pars.a, pars.urls.Count);
+        }
+
+        [Test]
+        public void EDGE()
+        {
+            //using (var driver = new InternetExplorerDriver())
+            //{
+            var driver = new EdgeDriver(@"C:\Users\r.merikanov\Downloads");
+            ESaS act = new ESaS(driver, Project);
+            act.Dir();
+            EParser pars = new EParser(driver, Project, URL, sURL);
+            pars.GoUrl();
+            pars.Parsing();
             //}
             Assert.AreEqual(pars.a, pars.urls.Count);
         }
