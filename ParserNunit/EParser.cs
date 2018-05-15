@@ -81,10 +81,11 @@ namespace ParserNunit
 
         public void Parsing()
         {
+            ESaS act = new ESaS(driver, Project);
+
             try
             {
                 var elements = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.TagName("a")));
-                ESaS act = new ESaS(driver, Project);
                 act.Action();
 
                 for (int i = 0; i <= elements.Count; i++)
@@ -114,6 +115,10 @@ namespace ParserNunit
                     {
                         Action();
                     }
+                    catch (StackOverflowException)
+                    {
+                        Action();
+                    }
                 }
             }
             catch (NoSuchElementException)
@@ -122,7 +127,12 @@ namespace ParserNunit
             }
             catch (WebDriverTimeoutException)
             {
+                act.Action();
                 Action();
+            }
+            catch (WebDriverException)
+            {
+                driver.Quit();
             }
         }
     }

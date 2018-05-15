@@ -33,6 +33,7 @@ namespace ParserNunit
 
         public void GoUrl()
         {
+            urls.Add(URL + sURL);
             a = 0;
             Url = Convert.ToString(urls[0]);
             driver.Navigate().GoToUrl(Url);
@@ -76,10 +77,11 @@ namespace ParserNunit
 
         public void Parsing()
         {
+            FSaS act = new FSaS(driver, Project);
+
             try
             {
                 var elements = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.TagName("a")));
-                FSaS act = new FSaS(driver, Project);
                 act.Action();
 
                 for (int i = 0; i <= elements.Count; i++)
@@ -109,6 +111,12 @@ namespace ParserNunit
                     {
                         Action();
                     }
+                    catch (StackOverflowException)
+                    {
+                        driver.Close();
+                        driver = new FirefoxDriver();
+                        Action();
+                    }
                 }
             }
             catch (NoSuchElementException)
@@ -117,6 +125,7 @@ namespace ParserNunit
             }
             catch (WebDriverTimeoutException)
             {
+                act.Action();
                 Action();
             }
             catch (WebDriverException)

@@ -77,10 +77,11 @@ namespace ParserNunit
 
         public void Parsing()
         {
+            GSaS act = new GSaS(driver, Project);
+
             try
             {
                 var elements = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.TagName("a")));
-                GSaS act = new GSaS(driver, Project);
                 act.Action();
 
                 for (int i = 0; i <= elements.Count; i++)
@@ -110,15 +111,29 @@ namespace ParserNunit
                     {
                         Action();
                     }
+                    catch (StackOverflowException)
+                    {
+                        driver.Close();
+                        ChromeOptions co = new ChromeOptions();
+                        co.AddExtension(@"C:\Users\Adblocker-Genesis-Plus_v1.0.6.crx");
+                        driver = new ChromeDriver(co);
+                        Action();
+                    }
                 }
             }
             catch (NoSuchElementException)
             {
                 Action();
             }
+            
             catch (WebDriverTimeoutException)
             {
+                act.Action();
                 Action();
+            }
+            catch (WebDriverException)
+            {
+                driver.Quit();
             }
         }
     }
