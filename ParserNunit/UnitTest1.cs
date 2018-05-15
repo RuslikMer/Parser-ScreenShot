@@ -109,7 +109,7 @@ namespace ParserNunit
             pars.GoUrl();
             pars.Parsing();
             //}
-            Assert.AreEqual(pars.a, pars.urls.Count);
+            Assert.NotNull(pars.urls.Count);
         }
     }
 }
