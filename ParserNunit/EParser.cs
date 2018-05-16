@@ -117,6 +117,8 @@ namespace ParserNunit
                     }
                     catch (StackOverflowException)
                     {
+                        driver.Close();
+                        driver = new EdgeDriver(@"C:\Users\r.merikanov\Downloads");
                         Action();
                     }
                 }

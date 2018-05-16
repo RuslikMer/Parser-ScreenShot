@@ -27,7 +27,9 @@ namespace ParserNunit
         public void TestFixtureSetUp()
         {
             Project = "магнит";
-            URL = "http://xn--e1aliadgiil4bl.xn--p1ai/";
+            //Environment.GetEnvironmentVariable("URL");
+            //URL = "http://xn--e1aliadgiil4bl.xn--p1ai/";
+            URL = Environment.GetEnvironmentVariable("URL");
             sURL = "";
         }
 
