@@ -142,7 +142,8 @@ namespace BrowserStuckParser
             catch (WebDriverException)
             {
                 //act.Action();
-                Action();
+                //Action();
+                driver.Quit();
             }
         }
     }

@@ -30,7 +30,8 @@ namespace BrowserStuckParser
             //Project = "pp";
             //URL = "http://xn--e1aliadgiil4bl.xn--p1ai/";
             URL = Environment.GetEnvironmentVariable("URL");
-            sURL = "";
+            //sURL = "";
+            sURL = Environment.GetEnvironmentVariable("SURL");
         }
 
         [OneTimeTearDown] //вызывается после завершения всех тестов
