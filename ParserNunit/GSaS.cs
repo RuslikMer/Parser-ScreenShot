@@ -81,9 +81,13 @@ namespace ParserNunit
         {
             //string Url = driver.SwitchTo().Window(driver.WindowHandles.ToList().Last()).Url;
             string T = driver.SwitchTo().Window(driver.WindowHandles.ToList().Last()).Title;
+            if (String.IsNullOrEmpty(T))
+            {
+                T = "NoTitle";
+            }
             //Encoding ascii = Encoding.ASCII;
 
-            char[] ch = new Char[] { '|', '*', '"', '?' };
+            char[] ch = new Char[] { '|', '*', '"', '?', ';', ':', ',', '.', '/', '[', ']', '{', '}', '=', '-', '_', '+', '#', '@', '!', '$', '%', '^', '&', '№' };
             //string[] arr = new string[]
             //{
             //    "|",

@@ -90,7 +90,11 @@ namespace ParserNunit
         void NewDirectory()
         {
             string T = driver.SwitchTo().Window(driver.WindowHandles.ToList().Last()).Title;
-            char[] ch = new Char[] { '|', '*', '"', '?' };
+            if (String.IsNullOrEmpty(T))
+            {
+                T = "NoTitle";
+            }
+            char[] ch = new Char[] { '|', '*', '"', '?', ';', ':', ',', '.', '/', '[', ']', '{', '}', '=', '-', '_', '+', '#', '@', '!', '$', '%', '^', '&', '№' };
 
             foreach (char s in ch)
             {
