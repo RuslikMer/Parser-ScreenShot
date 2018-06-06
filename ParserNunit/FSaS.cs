@@ -84,7 +84,7 @@ namespace ParserNunit
             string T = driver.SwitchTo().Window(driver.WindowHandles.ToList().Last()).Title;
             //Encoding ascii = Encoding.ASCII;
 
-            char[] ch = new Char[] { '|', '*', '"', '?' };
+            char[] ch = new Char[] { '|', '*', '"', '?', ';', ':', ',', '.', '/', '[', ']', '{', '}', '=', '-', '_', '+', '#', '@', '!', '$', '%', '^', '&', '№' };
 
             foreach (char s in ch)
             {

@@ -26,13 +26,13 @@ namespace ParserNunit
         [OneTimeSetUp] // вызывается перед началом запуска всех тестов
         public void TestFixtureSetUp()
         {
-            Project = Environment.GetEnvironmentVariable("PROJECT");
-            //Project = "москвариум";
+            //Project = Environment.GetEnvironmentVariable("PROJECT");
+            Project = "москвариум";
             //Environment.GetEnvironmentVariable("URL");
-            //URL = "http://moskvarium.su";
-            URL = Environment.GetEnvironmentVariable("URL");
-            //sURL = "";
-            sURL = Environment.GetEnvironmentVariable("SURL");
+            URL = "http://moskvarium.su/";
+            //URL = Environment.GetEnvironmentVariable("URL");
+            sURL = "news";
+            //sURL = Environment.GetEnvironmentVariable("SURL");
         }
 
         [OneTimeTearDown] //вызывается после завершения всех тестов
@@ -101,19 +101,19 @@ namespace ParserNunit
             Assert.NotNull(pars.urls.Count);
         }
 
-        [Test]
-        public void EDGE()
-        {
-            //using (var driver = new InternetExplorerDriver())
-            //{
-            var driver = new EdgeDriver(@"C:\Users\r.merikanov\Downloads");
-            ESaS act = new ESaS(driver, Project);
-            act.Dir();
-            EParser pars = new EParser(driver, Project, URL, sURL);
-            pars.GoUrl();
-            pars.Parsing();
-            //}
-            Assert.NotNull(pars.urls.Count);
-        }
+        //[Test]
+        //public void EDGE()
+        //{
+        //    //using (var driver = new InternetExplorerDriver())
+        //    //{
+        //    var driver = new EdgeDriver(@"C:\Users\r.merikanov\Downloads");
+        //    ESaS act = new ESaS(driver, Project);
+        //    act.Dir();
+        //    EParser pars = new EParser(driver, Project, URL, sURL);
+        //    pars.GoUrl();
+        //    pars.Parsing();
+        //    //}
+        //    Assert.NotNull(pars.urls.Count);
+        //}
     }
 }
