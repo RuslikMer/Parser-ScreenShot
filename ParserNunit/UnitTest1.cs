@@ -32,7 +32,7 @@ namespace ParserNunit
             //URL = "http://moskvarium.su";
             URL = Environment.GetEnvironmentVariable("URL");
             //sURL = "";
-            sURL = Environment.GetEnvironmentVariable("SURL"); ;
+            sURL = Environment.GetEnvironmentVariable("SURL");
         }
 
         [OneTimeTearDown] //вызывается после завершения всех тестов
