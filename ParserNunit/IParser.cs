@@ -35,7 +35,7 @@ namespace ParserNunit
         public void GoUrl()
         {
             urls.Add(URL + sURL);
-            a = 0;
+            a = 1;
             Url = Convert.ToString(urls[0]);
             driver.Navigate().GoToUrl(Url);
             driver.Manage().Window.Maximize();
