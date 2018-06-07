@@ -27,9 +27,8 @@ namespace ParserNunit
         public void TestFixtureSetUp()
         {
             Project = Environment.GetEnvironmentVariable("PROJECT");
-            //Project = "москвариум";
-            //Environment.GetEnvironmentVariable("URL");
-            //URL = "http://moskvarium.su/";
+            //Project = "тур";
+            //URL = "https://turovart.com/ar/";
             URL = Environment.GetEnvironmentVariable("URL");
             //sURL = "news";
             sURL = Environment.GetEnvironmentVariable("SURL");
@@ -38,7 +37,7 @@ namespace ParserNunit
         [OneTimeTearDown] //вызывается после завершения всех тестов
         public void TestFixtureTearDown()
         {
-            driver.Quit();
+            //driver.Quit();
         }
 
         [SetUp] // вызывается перед каждым тестом

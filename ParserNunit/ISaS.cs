@@ -38,7 +38,7 @@ namespace ParserNunit
         {
             //определение размера
             w = driver.Manage().Window.Size.Height;
-            float b = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.ElementIsVisible(By.TagName("body"))).Size.Height;
+            float b = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.ElementIsVisible(By.TagName("html"))).Size.Height;
             //расчет повторений
             double n = b / w;
             i = Math.Ceiling(n);
