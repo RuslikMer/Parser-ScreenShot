@@ -26,11 +26,12 @@ namespace ParserNunit
         [OneTimeSetUp] // вызывается перед началом запуска всех тестов
         public void TestFixtureSetUp()
         {
+            //Project = "самтел";
+            //URL = "https://msk.sumtel.ru/";
+            //sURL = "sitemap";
+
             Project = Environment.GetEnvironmentVariable("PROJECT");
-            //Project = "тур";
-            //URL = "https://turovart.com/ar/";
             URL = Environment.GetEnvironmentVariable("URL");
-            //sURL = "news";
             sURL = Environment.GetEnvironmentVariable("SURL");
         }
 

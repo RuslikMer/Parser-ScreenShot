@@ -30,7 +30,9 @@ namespace ParserNunit
         {
             //определение размера
             w = driver.Manage().Window.Size.Height;
-            float b = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.ElementIsVisible(By.TagName("html"))).Size.Height;
+            //float b = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.ElementIsVisible(By.TagName("html"))).Size.Height;
+            var size = ((IJavaScriptExecutor)driver).ExecuteScript("return document.body.scrollHeight");
+            float b = Convert.ToInt32(size);
             //расчет повторений
             double n = b / w;
             i = Math.Ceiling(n);
