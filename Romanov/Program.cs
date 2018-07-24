@@ -55,8 +55,9 @@ namespace Romanov
 
                     using (var driver = new ChromeDriver(co))
                     {
+                        GlobalFunctions glob = new GlobalFunctions(driver, Project);
                         Act act = new Act(driver, Project);
-                        act.Dir();
+                        //act.Dir();
                         Parser pars = new Parser(driver, Project, URL, sURL);
                         pars.GoUrl();
                         pars.Parsing();
@@ -67,6 +68,7 @@ namespace Romanov
                 {
                     using (var driver = new FirefoxDriver())
                     {
+                        GlobalFunctions glob = new GlobalFunctions(driver, Project);
                         Fact act = new Fact(driver, Project);
                         act.Dir();
                         FParser pars = new FParser(driver, Project, URL, sURL);

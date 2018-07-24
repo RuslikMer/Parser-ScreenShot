@@ -15,6 +15,7 @@ namespace Romanov
     {
         public FirefoxDriver driver { set; get; }
         public string Project { set; get; }
+        public string Browser { set; get; }
         public int w { set; get; }
         public string path { set; get; }
         public double i { set; get; }
@@ -24,9 +25,9 @@ namespace Romanov
         {
             this.driver = driver;
             this.Project = Project;
-            
+            Browser = "FF";
         }
-        
+
         void GetSize()
         {
             //определение размера
@@ -66,7 +67,7 @@ namespace Romanov
 
         public void Dir()
         {
-            path = "Z:\\test\\test\\" + Project + "\\FF\\";
+            path = "Z:\\test\\test\\" + Project + "\\" + Browser + "\\";
 
             if (Directory.Exists(path))
             {
@@ -80,13 +81,11 @@ namespace Romanov
 
         void NewDirectory()
         {
-            //string Url = driver.SwitchTo().Window(driver.WindowHandles.ToList().Last()).Url;
             string T = driver.SwitchTo().Window(driver.WindowHandles.ToList().Last()).Title;
             if (String.IsNullOrEmpty(T))
             {
                 T = "NoTitle";
             }
-            //Encoding ascii = Encoding.ASCII;
 
             char[] ch = new Char[] { '|', '*', '"', '?', ';', ':', ',', '.', '/', '[', ']', '{', '}', '=', '-', '_', '+', '#', '@', '!', '$', '%', '^', '&', '№' };
 
@@ -99,14 +98,12 @@ namespace Romanov
                     if (T.IndexOf(" ") != -1)
                     {
                         int count = T.ToCharArray().Where(i => i == ' ').Count();
-                        //Console.WriteLine(count);
-
                         T = T.Remove(T.LastIndexOf(" "));
                     }
                 }
             }
 
-            path = "Z:\\test\\test\\" + Project + "\\FF\\" + T + "\\";
+            path = "Z:\\test\\test\\" + Project + "\\" + Browser + "\\" + T + "\\";
 
             try
             {

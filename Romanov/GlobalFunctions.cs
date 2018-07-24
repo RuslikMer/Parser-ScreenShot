@@ -1,5 +1,8 @@
 ﻿using System;
+using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Edge;
+using OpenQA.Selenium.IE;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Interactions;
@@ -8,41 +11,53 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Text;
-using OpenQA.Selenium.IE;
+using Selenium.Helper;
 
 namespace Romanov
 {
-    class IEact
+    class GlobalFunctions
     {
-        public InternetExplorerDriver driver { set; get; }
+        public IWebDriver driver { set; get; }
         public string Project { set; get; }
         public string Browser { set; get; }
         public int w { set; get; }
         public string path { set; get; }
         public double i { set; get; }
-        TimeSpan timeout = new TimeSpan(00, 00, 45);
+        TimeSpan timeout = new TimeSpan(00, 00, 10);
 
-
-        public IEact(InternetExplorerDriver driver, string Project)
+        public GlobalFunctions(FirefoxDriver driver, string Project)
         {
             this.driver = driver;
             this.Project = Project;
-            Browser = "IE";
+            //Browser = "GC";
         }
 
-
-        void GetSize()
+        public GlobalFunctions(ChromeDriver driver, string Project)
         {
-            //определение размера
-            w = driver.Manage().Window.Size.Height;
-            float b = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.ElementIsVisible(By.TagName("body"))).Size.Height;
-            //расчет повторений
-            double n = b / w;
-            i = Math.Ceiling(n);
+            this.driver = driver;
+            this.Project = Project;
+            //Browser = "GC";
         }
+
+        public GlobalFunctions(InternetExplorerDriver driver, string Project)
+        {
+            this.driver = driver;
+            this.Project = Project;
+            //Browser = "GC";
+        }
+
+        public GlobalFunctions(EdgeDriver driver, string Project)
+        {
+            this.driver = driver;
+            this.Project = Project;
+            //Browser = "GC";
+        }
+
 
         public void Action()
         {
+            Act act = new Act(driver, Project);
+
             GetSize();
             NewDirectory();
 
@@ -50,22 +65,37 @@ namespace Romanov
             {
                 string x = Convert.ToString(w * k);
                 ((IJavaScriptExecutor)driver).ExecuteScript("window.scrollTo(0," + x + ");");
-                Screen();
+                act.Screen();
                 Task.Delay(500).Wait();
             }
         }
 
-        void Screen()
+        void GetSize()
         {
-            string screenname = "";
-            Random randsn = new Random();
-            for (int v = 0; v < 5; v++)
-            {
-                screenname += Convert.ToChar(randsn.Next(97, 122));
-            }
-            var screenShot = driver.GetScreenshot();
-            screenShot.SaveAsFile(path + screenname + ".png", ScreenshotImageFormat.Png);
+            //определение размера
+
+            var size = ((IJavaScriptExecutor)driver).ExecuteScript("return window.innerHeight");
+            Console.WriteLine(size);
+            w = Convert.ToInt32(size);
+            var size1 = ((IJavaScriptExecutor)driver).ExecuteScript("return document.body.scrollHeight");
+            float b = Convert.ToInt32(size1);
+            Console.WriteLine(b);
+            //расчет повторений
+            double n = b / w;
+            i = Math.Ceiling(n);
         }
+
+        //void Screen()
+        //{
+        //    string screenname = "";
+        //    Random randsn = new Random();
+        //    for (int v = 0; v < 5; v++)
+        //    {
+        //        screenname += Convert.ToChar(randsn.Next(97, 122));
+        //    }
+        //    var screenShot = driver.GetScreenshot();
+        //    screenShot.SaveAsFile(path + screenname + ".png", ScreenshotImageFormat.Png);
+        //}
 
         public void Dir()
         {
@@ -83,14 +113,23 @@ namespace Romanov
 
         void NewDirectory()
         {
+            //string Url = driver.SwitchTo().Window(driver.WindowHandles.ToList().Last()).Url;
             string T = driver.SwitchTo().Window(driver.WindowHandles.ToList().Last()).Title;
+
             if (String.IsNullOrEmpty(T))
             {
                 T = "NoTitle";
             }
+            //Encoding ascii = Encoding.ASCII;
+            Console.WriteLine(T);
 
             char[] ch = new Char[] { '|', '*', '"', '?', ';', ':', ',', '.', '/', '[', ']', '{', '}', '=', '-', '_', '+', '#', '@', '!', '$', '%', '^', '&', '№' };
 
+            //string[] arr = new string[]
+            //{
+            //    "|",
+            //    "?"
+            //};
 
             foreach (char s in ch)
             {
@@ -101,6 +140,8 @@ namespace Romanov
                     if (T.IndexOf(" ") != -1)
                     {
                         int count = T.ToCharArray().Where(i => i == ' ').Count();
+                        //Console.WriteLine(count);
+
                         T = T.Remove(T.LastIndexOf(" "));
                     }
                 }
