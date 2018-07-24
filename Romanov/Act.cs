@@ -18,7 +18,7 @@ namespace Romanov
         public int w { set; get; }
         public string path { set; get; }
         public double i { set; get; }
-        TimeSpan timeout = new TimeSpan(00, 00, 45);
+        TimeSpan timeout = new TimeSpan(00, 00, 10);
 
         public Act(ChromeDriver driver , string Project)
         {
@@ -29,8 +29,13 @@ namespace Romanov
         void GetSize()
         {
             //определение размера
-            w = driver.Manage().Window.Size.Height;
-            float b = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.ElementIsVisible(By.TagName("body"))).Size.Height;
+           
+            var size = ((IJavaScriptExecutor)driver).ExecuteScript("return window.innerHeight");
+            Console.WriteLine(size);
+            w = Convert.ToInt32(size);
+            var size1 = ((IJavaScriptExecutor)driver).ExecuteScript("return document.body.scrollHeight");
+            float b = Convert.ToInt32(size1);
+            Console.WriteLine(b);
             //расчет повторений
             double n = b / w;
             i = Math.Ceiling(n);
@@ -65,7 +70,7 @@ namespace Romanov
 
         public void Dir()
         {
-            path = "Z:\\test\\test\\" + Project+"\\GC\\";
+            path = "Z:\\test\\test\\" + Project + "\\GC\\";
 
             if (Directory.Exists(path))
             {
@@ -81,9 +86,16 @@ namespace Romanov
         {
             //string Url = driver.SwitchTo().Window(driver.WindowHandles.ToList().Last()).Url;
             string T = driver.SwitchTo().Window(driver.WindowHandles.ToList().Last()).Title;
-            //Encoding ascii = Encoding.ASCII;
 
-            char[] ch = new Char[] { '|', '*', '"', '?' };
+            if (String.IsNullOrEmpty(T))
+            {
+                T = "NoTitle";
+            }
+            //Encoding ascii = Encoding.ASCII;
+            Console.WriteLine(T);
+
+            char[] ch = new Char[] { '|', '*', '"', '?', ';', ':', ',', '.', '/', '[', ']', '{', '}', '=', '-', '_', '+', '#', '@', '!', '$', '%', '^', '&', '№' };
+
             //string[] arr = new string[]
             //{
             //    "|",

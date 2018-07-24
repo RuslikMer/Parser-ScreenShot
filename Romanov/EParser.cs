@@ -34,7 +34,7 @@ namespace Romanov
         public void GoUrl()
         {
             urls.Add(URL + sURL);
-            a = 0;
+            a = 1;
             Url = Convert.ToString(urls[0]);
             driver.Navigate().GoToUrl(Url);
             driver.Manage().Window.Maximize();
@@ -45,19 +45,26 @@ namespace Romanov
             int k = a++;
             Console.WriteLine(k);
 
-            if (k == (urls.Count - 1))
+            try
             {
-                string url = Convert.ToString(urls[k]);
-                driver.Navigate().GoToUrl(url);
+                if (k == (urls.Count - 1))
+                {
+                    string url = Convert.ToString(urls[k]);
+                    driver.Navigate().GoToUrl(url);
+                }
+                else if (k == urls.Count)
+                {
+                    driver.Quit();
+                }
+                else
+                {
+                    string url = Convert.ToString(urls[k + 1]);
+                    driver.Navigate().GoToUrl(url);
+                }
             }
-            else if (k == urls.Count)
+            catch (ArgumentOutOfRangeException)
             {
                 driver.Quit();
-            }
-            else
-            {
-                string url = Convert.ToString(urls[k + 1]);
-                driver.Navigate().GoToUrl(url);
             }
         }
 
@@ -110,6 +117,12 @@ namespace Romanov
                     {
                         Action();
                     }
+                    catch (StackOverflowException)
+                    {
+                        driver.Close();
+                        driver = new EdgeDriver(@"C:\Users\r.merikanov\Downloads");
+                        Action();
+                    }
                 }
             }
             catch (NoSuchElementException)
@@ -119,6 +132,10 @@ namespace Romanov
             catch (WebDriverTimeoutException)
             {
                 Action();
+            }
+            catch (WebDriverException)
+            {
+                driver.Quit();
             }
         }
     }

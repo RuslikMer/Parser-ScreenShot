@@ -27,18 +27,18 @@ namespace Romanov
 
             static void Main(string[] args)
             {
-                Project = "Hilti";
-                URL = "http://www.eurofox.at/";
-                sURL = "sitemap";
+                Project = "Туров";
+                URL = "https://turovart.com/ar/";
+                sURL = "";
 
-                //ChromePars();
-                //FirefoxPars();
+                ChromePars();
+                FirefoxPars();
                 IEPars();
-                EdgePars();
+                //EdgePars();
 
                 void EdgePars()
                 {
-                    using (var driver = new EdgeDriver())
+                    using (var driver = new EdgeDriver(@"C:\Users\r.merikanov\Downloads"))
                     {
                         EAct act = new EAct(driver, Project);
                         act.Dir();
@@ -65,10 +65,6 @@ namespace Romanov
 
                 void FirefoxPars()
                 {
-                    //FirefoxOptions fo = new FirefoxOptions();
-                    //FirefoxProfile Fp = new FirefoxProfile();
-                    //Fp.AddExtension(@"C:\Users\Adblocker-Genesis-Plus_v1.0.6.crx");
-
                     using (var driver = new FirefoxDriver())
                     {
                         Fact act = new Fact(driver, Project);

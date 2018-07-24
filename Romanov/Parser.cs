@@ -20,7 +20,7 @@ namespace Romanov
         public string sURL { set; get; }
         public string Url { set; get; }
         public int a { set; get; }
-        TimeSpan timeout = new TimeSpan(00, 00, 45);
+        TimeSpan timeout = new TimeSpan(00, 00, 05);
         public IList urls = new List<string>();
 
         public Parser(ChromeDriver driver, string Project, string URLL, string sURLL)
@@ -34,7 +34,7 @@ namespace Romanov
         public void GoUrl()
         {
             urls.Add(URL+sURL);
-            a = 0;
+            a = 1;
             Url = Convert.ToString(urls[0]);
             driver.Navigate().GoToUrl(Url);
             driver.Manage().Window.Maximize();
@@ -43,21 +43,27 @@ namespace Romanov
         void NextUrl()
         {
             int k = a++;
-            Console.WriteLine(k);
-
-            if (k == (urls.Count - 1))
+            Console.WriteLine(Convert.ToString(k)+ " k" );
+            try
             {
-                string url = Convert.ToString(urls[k]);
-                driver.Navigate().GoToUrl(url);
+                if (k == (urls.Count - 1))
+                {
+                    string url = Convert.ToString(urls[k]);
+                    driver.Navigate().GoToUrl(url);
+                }
+                else if (k == urls.Count)
+                {
+                    driver.Quit();
+                }
+                else
+                {
+                    string url = Convert.ToString(urls[k + 1]);
+                    driver.Navigate().GoToUrl(url);
+                }
             }
-            else if (k == urls.Count)
+            catch (ArgumentOutOfRangeException)
             {
                 driver.Quit();
-            }
-            else
-            {
-                string url = Convert.ToString(urls[k + 1]);
-                driver.Navigate().GoToUrl(url);
             }
         }
 
@@ -77,18 +83,24 @@ namespace Romanov
 
         public void Parsing()
         {
+            Act act = new Act(driver, Project);
+
             try
             {
                 var elements = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.TagName("a")));
-                Act act = new Act(driver, Project);
                 act.Action();
 
                 for (int i = 0; i <= elements.Count; i++)
                 {
+                    //int i = 0;
+                //do
+                //{
+                    //i++;
                     try
                     {
                         var collections = elements[i].GetAttribute("href");
-                        
+                        //Console.WriteLine(elements[i].GetAttribute("href"));
+
                         foreach (string s in arr)
                         {
                             if (collections.IndexOf(s) != -1)
@@ -96,10 +108,9 @@ namespace Romanov
                                 collections = collections.Remove(collections.IndexOf(s));
                             }
                         }
-                        if (collections.StartsWith("http://www.eurofox.at/") == true && urls.Contains(collections) == false)
+                        if (collections.StartsWith(URL) == true && urls.Contains(collections) == false)
                         {
                             urls.Add(collections);
-                            
                         }
                     }
                     catch (ArgumentOutOfRangeException)
@@ -110,6 +121,16 @@ namespace Romanov
                     {
                         Action();
                     }
+                    catch (StackOverflowException)
+                    {
+                        driver.Close();
+                        ChromeOptions co = new ChromeOptions();
+                        co.AddExtension(@"C:\Users\Adblocker-Genesis-Plus_v1.0.6.crx");
+                        driver = new ChromeDriver(co);
+                        Action();
+                    }
+                    //}
+                    //while (a != urls.Count);
                 }
             }
             catch (NoSuchElementException)
@@ -118,7 +139,14 @@ namespace Romanov
             }
             catch (WebDriverTimeoutException)
             {
+                act.Action();
                 Action();
+            }
+            catch (WebDriverException)
+            {
+                //act.Action();
+                //Action();
+                driver.Quit();
             }
         }
     }

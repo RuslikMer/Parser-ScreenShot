@@ -36,7 +36,7 @@ namespace Romanov
         public void GoUrl()
         {
             urls.Add(URL + sURL);
-            a = 0;
+            a = 1;
             Url = Convert.ToString(urls[0]);
             driver.Navigate().GoToUrl(Url);
             driver.Manage().Window.Maximize();
@@ -47,19 +47,26 @@ namespace Romanov
             int k = a++;
             Console.WriteLine(k);
 
-            if (k == (urls.Count - 1))
+            try
             {
-                string url = Convert.ToString(urls[k]);
-                driver.Navigate().GoToUrl(url);
+                if (k == (urls.Count - 1))
+                {
+                    string url = Convert.ToString(urls[k]);
+                    driver.Navigate().GoToUrl(url);
+                }
+                else if (k == urls.Count)
+                {
+                    driver.Quit();
+                }
+                else
+                {
+                    string url = Convert.ToString(urls[k + 1]);
+                    driver.Navigate().GoToUrl(url);
+                }
             }
-            else if (k == urls.Count)
+            catch (ArgumentOutOfRangeException)
             {
                 driver.Quit();
-            }
-            else
-            {
-                string url = Convert.ToString(urls[k + 1]);
-                driver.Navigate().GoToUrl(url);
             }
         }
 
@@ -79,10 +86,11 @@ namespace Romanov
 
         public void Parsing()
         {
+            IEact act = new IEact(driver, Project);
+
             try
             {
                 var elements = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.TagName("a")));
-                IEact act = new IEact(driver, Project);
                 act.Action();
 
                 for (int i = 0; i <= elements.Count; i++)
@@ -98,7 +106,7 @@ namespace Romanov
                                 collections = collections.Remove(collections.IndexOf(s));
                             }
                         }
-                        if (collections.StartsWith("http://www.eurofox.at/") == true && urls.Contains(collections) == false)
+                        if (collections.StartsWith(URL) == true && urls.Contains(collections) == false)
                         {
                             urls.Add(collections);
 
@@ -112,6 +120,12 @@ namespace Romanov
                     {
                         Action();
                     }
+                    catch (StackOverflowException)
+                    {
+                        driver.Close();
+                        driver = new InternetExplorerDriver();
+                        Action();
+                    }
                 }
             }
             catch (NoSuchElementException)
@@ -120,6 +134,7 @@ namespace Romanov
             }
             catch (WebDriverTimeoutException)
             {
+                act.Action();
                 Action();
             }
             catch (WebDriverException)

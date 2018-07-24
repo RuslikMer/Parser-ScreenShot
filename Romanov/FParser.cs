@@ -33,7 +33,8 @@ namespace Romanov
 
         public void GoUrl()
         {
-            a = 0;
+            urls.Add(URL + sURL);
+            a = 1;
             Url = Convert.ToString(urls[0]);
             driver.Navigate().GoToUrl(Url);
             driver.Manage().Window.Maximize();
@@ -44,19 +45,26 @@ namespace Romanov
             int k = a++;
             Console.WriteLine(k);
 
-            if (k == (urls.Count - 1))
+            try
             {
-                string url = Convert.ToString(urls[k]);
-                driver.Navigate().GoToUrl(url);
+                if (k == (urls.Count - 1))
+                {
+                    string url = Convert.ToString(urls[k]);
+                    driver.Navigate().GoToUrl(url);
+                }
+                else if (k == urls.Count)
+                {
+                    driver.Quit();
+                }
+                else
+                {
+                    string url = Convert.ToString(urls[k + 1]);
+                    driver.Navigate().GoToUrl(url);
+                }
             }
-            else if (k == urls.Count)
+            catch (ArgumentOutOfRangeException)
             {
                 driver.Quit();
-            }
-            else
-            {
-                string url = Convert.ToString(urls[k + 1]);
-                driver.Navigate().GoToUrl(url);
             }
         }
 
@@ -95,7 +103,7 @@ namespace Romanov
                                 collections = collections.Remove(collections.IndexOf(s));
                             }
                         }
-                        if (collections.StartsWith("http://xn--e1aliadgiil4bl.xn--p1ai/") == true && urls.Contains(collections) == false)
+                        if (collections.StartsWith(URL) == true && urls.Contains(collections) == false)
                         {
                             urls.Add(collections);
 
@@ -107,6 +115,12 @@ namespace Romanov
                     }
                     catch (NullReferenceException)
                     {
+                        Action();
+                    }
+                    catch (StackOverflowException)
+                    {
+                        driver.Close();
+                        driver = new FirefoxDriver();
                         Action();
                     }
                 }

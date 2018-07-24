@@ -31,7 +31,9 @@ namespace Romanov
         {
             //определение размера
             w = driver.Manage().Window.Size.Height;
-            float b = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.ElementIsVisible(By.TagName("body"))).Size.Height;
+            //float b = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.ElementIsVisible(By.TagName("body.offsetHeight"))).Size.Height;
+            var size = ((IJavaScriptExecutor)driver).ExecuteScript("return body.offsetHeight");
+            float b = Convert.ToInt32(size);
             //расчет повторений
             double n = b / w;
             i = Math.Ceiling(n);
@@ -82,9 +84,13 @@ namespace Romanov
         {
             //string Url = driver.SwitchTo().Window(driver.WindowHandles.ToList().Last()).Url;
             string T = driver.SwitchTo().Window(driver.WindowHandles.ToList().Last()).Title;
+            if (String.IsNullOrEmpty(T))
+            {
+                T = "NoTitle";
+            }
             //Encoding ascii = Encoding.ASCII;
 
-            char[] ch = new Char[] { '|', '*', '"', '?' };
+            char[] ch = new Char[] { '|', '*', '"', '?', ';', ':', ',', '.', '/', '[', ']', '{', '}', '=', '-', '_', '+', '#', '@', '!', '$', '%', '^', '&', '№' };
 
             foreach (char s in ch)
             {
