@@ -29,35 +29,32 @@ namespace Romanov
         {
             this.driver = driver;
             this.Project = Project;
-            //Browser = "GC";
+            Browser = "FF";
         }
 
         public GlobalFunctions(ChromeDriver driver, string Project)
         {
             this.driver = driver;
             this.Project = Project;
-            //Browser = "GC";
+            Browser = "GC";
         }
 
         public GlobalFunctions(InternetExplorerDriver driver, string Project)
         {
             this.driver = driver;
             this.Project = Project;
-            //Browser = "GC";
+            Browser = "IE";
         }
 
         public GlobalFunctions(EdgeDriver driver, string Project)
         {
             this.driver = driver;
             this.Project = Project;
-            //Browser = "GC";
+            Browser = "EDGE";
         }
-
 
         public void Action()
         {
-            Act act = new Act(driver, Project);
-
             GetSize();
             NewDirectory();
 
@@ -65,7 +62,7 @@ namespace Romanov
             {
                 string x = Convert.ToString(w * k);
                 ((IJavaScriptExecutor)driver).ExecuteScript("window.scrollTo(0," + x + ");");
-                act.Screen();
+                Screen();
                 Task.Delay(500).Wait();
             }
         }
@@ -85,17 +82,18 @@ namespace Romanov
             i = Math.Ceiling(n);
         }
 
-        //void Screen()
-        //{
-        //    string screenname = "";
-        //    Random randsn = new Random();
-        //    for (int v = 0; v < 5; v++)
-        //    {
-        //        screenname += Convert.ToChar(randsn.Next(97, 122));
-        //    }
-        //    var screenShot = driver.GetScreenshot();
-        //    screenShot.SaveAsFile(path + screenname + ".png", ScreenshotImageFormat.Png);
-        //}
+        void Screen()
+        {
+            string screenname = "";
+            Random randsn = new Random();
+            for (int v = 0; v < 5; v++)
+            {
+                screenname += Convert.ToChar(randsn.Next(97, 122));
+            }
+            //var screenShot = driver.GetScreenshot();
+            Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
+            ss.SaveAsFile(path + screenname + ".png", ScreenshotImageFormat.Png);
+        }
 
         public void Dir()
         {

@@ -40,8 +40,10 @@ namespace Romanov
                 {
                     using (var driver = new EdgeDriver(@"C:\Users\r.merikanov\Downloads"))
                     {
-                        EAct act = new EAct(driver, Project);
-                        act.Dir();
+                        GlobalFunctions glob = new GlobalFunctions(driver, Project);
+                        glob.Dir();
+                        //EAct act = new EAct(driver, Project);
+                        //act.Dir();
                         EParser pars = new EParser(driver, Project, URL, sURL);
                         pars.GoUrl();
                         pars.Parsing();
@@ -56,7 +58,8 @@ namespace Romanov
                     using (var driver = new ChromeDriver(co))
                     {
                         GlobalFunctions glob = new GlobalFunctions(driver, Project);
-                        Act act = new Act(driver, Project);
+                        glob.Dir();
+                        //Act act = new Act(driver, Project);
                         //act.Dir();
                         Parser pars = new Parser(driver, Project, URL, sURL);
                         pars.GoUrl();
@@ -69,8 +72,9 @@ namespace Romanov
                     using (var driver = new FirefoxDriver())
                     {
                         GlobalFunctions glob = new GlobalFunctions(driver, Project);
-                        Fact act = new Fact(driver, Project);
-                        act.Dir();
+                        glob.Dir();
+                        //Fact act = new Fact(driver, Project);
+                        //act.Dir();
                         FParser pars = new FParser(driver, Project, URL, sURL);
                         pars.GoUrl();
                         pars.Parsing();
@@ -81,8 +85,10 @@ namespace Romanov
                 {
                     using (var driver = new InternetExplorerDriver())
                     {
-                        IEact act = new IEact(driver, Project);
-                        act.Dir();
+                        GlobalFunctions glob = new GlobalFunctions(driver, Project);
+                        glob.Dir();
+                        //IEact act = new IEact(driver, Project);
+                        //act.Dir();
                         IEParser pars = new IEParser(driver, Project, URL, sURL);
                         pars.GoUrl();
                         pars.Parsing();
