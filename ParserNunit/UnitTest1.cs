@@ -57,7 +57,7 @@ namespace ParserNunit
         public void GC()
         {
             ChromeOptions co = new ChromeOptions();
-            co.AddExtension(@"C:\Users\Adblocker-Genesis-Plus_v1.0.6.crx");
+            co.AddExtension(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Helper\Adblocker-Genesis-Plus_v1.0.6.crx"));
 
             //using (var driver = new ChromeDriver(co))
             //{
@@ -112,7 +112,7 @@ namespace ParserNunit
         {
             //using (var driver = new InternetExplorerDriver())
             //{
-            var driver = new EdgeDriver(@"C:\Users\r.merikanov\Downloads");
+            var driver = new EdgeDriver(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Helper"));
             //ESaS act = new ESaS(driver, Project);
             //act.Dir();
             GlobalFunctions glob = new GlobalFunctions(driver, Project);
