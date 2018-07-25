@@ -121,7 +121,7 @@ namespace Romanov
                     catch (StackOverflowException)
                     {
                         driver.Close();
-                        driver = new EdgeDriver(@"C:\Users\r.merikanov\Downloads");
+                        driver = new EdgeDriver(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Helper"));
                         Action();
                     }
                 }

@@ -38,7 +38,7 @@ namespace Romanov
 
                 void EdgePars()
                 {
-                    using (var driver = new EdgeDriver(@"C:\Users\r.merikanov\Downloads"))
+                    using (var driver = new EdgeDriver(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Helper")))
                     {
                         GlobalFunctions glob = new GlobalFunctions(driver, Project);
                         glob.Dir();
@@ -53,7 +53,8 @@ namespace Romanov
                 void ChromePars()
                 {
                     ChromeOptions co = new ChromeOptions();
-                    co.AddExtension(@"C:\Users\Adblocker-Genesis-Plus_v1.0.6.crx");
+                    Console.WriteLine(AppDomain.CurrentDomain.BaseDirectory);
+                    co.AddExtension(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Helper\Adblocker-Genesis-Plus_v1.0.6.crx"));
 
                     using (var driver = new ChromeDriver(co))
                     {
