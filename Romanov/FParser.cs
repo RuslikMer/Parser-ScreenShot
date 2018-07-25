@@ -75,7 +75,12 @@ namespace Romanov
             Parsing();
         }
 
-        char[] ch = new Char[] { '|', '*', '"', '?', ';', ':', ',', '.', '/', '[', ']', '{', '}', '=', '-', '_', '+', '#', '@', '!', '$', '%', '^', '&', '№' };
+        string[] arr = new string[]
+        {
+            "#",
+            "?",
+            "upload"
+        };
 
         public void Parsing()
         {
@@ -92,7 +97,7 @@ namespace Romanov
                     {
                         var collections = elements[i].GetAttribute("href");
 
-                        foreach (char s in ch)
+                        foreach (string s in arr)
                         {
                             if (collections.IndexOf(s) != -1)
                             {
