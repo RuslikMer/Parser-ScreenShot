@@ -75,20 +75,16 @@ namespace Romanov
             Parsing();
         }
 
-        string[] arr = new string[]
-        {
-            "#",
-            "?",
-            "upload"
-        };
+        char[] ch = new Char[] { '|', '*', '"', '?', ';', ':', ',', '.', '/', '[', ']', '{', '}', '=', '-', '_', '+', '#', '@', '!', '$', '%', '^', '&', '№' };
 
         public void Parsing()
         {
+            GlobalFunctions glob = new GlobalFunctions(driver, Project);
+
             try
             {
                 var elements = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.TagName("a")));
-                EAct act = new EAct(driver, Project);
-                act.Action();
+                glob.Action();
 
                 for (int i = 0; i <= elements.Count; i++)
                 {
@@ -96,7 +92,7 @@ namespace Romanov
                     {
                         var collections = elements[i].GetAttribute("href");
 
-                        foreach (string s in arr)
+                        foreach (char s in ch)
                         {
                             if (collections.IndexOf(s) != -1)
                             {
@@ -131,6 +127,7 @@ namespace Romanov
             }
             catch (WebDriverTimeoutException)
             {
+                glob.Action();
                 Action();
             }
             catch (WebDriverException)

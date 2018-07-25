@@ -34,7 +34,7 @@ namespace Romanov
                 ChromePars();
                 FirefoxPars();
                 IEPars();
-                //EdgePars();
+                EdgePars();
 
                 void EdgePars()
                 {
