@@ -71,6 +71,7 @@
     <Compile Include="ESaS.cs" />
     <Compile Include="FParser.cs" />
     <Compile Include="FSaS.cs" />
+    <Compile Include="GlobalFunctions.cs" />
     <Compile Include="GParser.cs" />
     <Compile Include="GSaS.cs" />
     <Compile Include="IParser.cs" />

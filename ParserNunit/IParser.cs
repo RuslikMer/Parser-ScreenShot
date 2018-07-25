@@ -82,12 +82,12 @@ namespace ParserNunit
 
         public void Parsing()
         {
-            ISaS act = new ISaS(driver, Project);
+            GlobalFunctions glob = new GlobalFunctions(driver, Project);
 
             try
             {
                 var elements = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.TagName("a")));
-                act.Action();
+                glob.Action();
 
                 for (int i = 0; i <= elements.Count; i++)
                 {
@@ -128,7 +128,7 @@ namespace ParserNunit
             }
             catch (WebDriverTimeoutException)
             {
-                act.Action();
+                glob.Action();
                 Action();
             }
             catch (WebDriverException)

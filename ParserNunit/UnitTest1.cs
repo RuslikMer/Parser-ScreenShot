@@ -62,8 +62,10 @@ namespace ParserNunit
             //using (var driver = new ChromeDriver(co))
             //{
             var driver = new ChromeDriver(co);
-            GSaS act = new GSaS(driver, Project);
-            act.Dir();
+            //GSaS act = new GSaS(driver, Project);
+            //act.Dir();
+            GlobalFunctions glob = new GlobalFunctions(driver, Project);
+            glob.Dir();
             GParser pars = new GParser(driver, Project, URL, sURL);
             pars.GoUrl();
             pars.Parsing();
@@ -77,8 +79,10 @@ namespace ParserNunit
             //using (var driver = new FirefoxDriver())
             //{
             var driver = new FirefoxDriver();
-            FSaS act = new FSaS(driver, Project);
-            act.Dir();
+            //FSaS act = new FSaS(driver, Project);
+            //act.Dir();
+            GlobalFunctions glob = new GlobalFunctions(driver, Project);
+            glob.Dir();
             FParser pars = new FParser(driver, Project, URL, sURL);
             pars.GoUrl();
             pars.Parsing();
@@ -92,8 +96,10 @@ namespace ParserNunit
             //using (var driver = new InternetExplorerDriver())
             //{
             var driver = new InternetExplorerDriver();
-            ISaS act = new ISaS(driver, Project);
-            act.Dir();
+            //ISaS act = new ISaS(driver, Project);
+            //act.Dir();
+            GlobalFunctions glob = new GlobalFunctions(driver, Project);
+            glob.Dir();
             IParser pars = new IParser(driver, Project, URL, sURL);
             pars.GoUrl();
             pars.Parsing();
@@ -107,8 +113,10 @@ namespace ParserNunit
             //using (var driver = new InternetExplorerDriver())
             //{
             var driver = new EdgeDriver(@"C:\Users\r.merikanov\Downloads");
-            ESaS act = new ESaS(driver, Project);
-            act.Dir();
+            //ESaS act = new ESaS(driver, Project);
+            //act.Dir();
+            GlobalFunctions glob = new GlobalFunctions(driver, Project);
+            glob.Dir();
             EParser pars = new EParser(driver, Project, URL, sURL);
             pars.GoUrl();
             pars.Parsing();
