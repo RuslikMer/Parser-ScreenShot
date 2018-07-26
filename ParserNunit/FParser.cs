@@ -91,8 +91,13 @@ namespace ParserNunit
                 var elements = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.TagName("a")));
                 glob.Action();
 
-                for (int i = 0; i <= elements.Count; i++)
+                //for (int i = 0; i <= elements.Count; i++)
+                //{
+                int i = 0;
+
+                do
                 {
+                    i++;
                     try
                     {
                         var collections = elements[i].GetAttribute("href");
@@ -125,6 +130,8 @@ namespace ParserNunit
                         Action();
                     }
                 }
+                while (a != urls.Count);
+                //}
             }
             catch (NoSuchElementException)
             {
