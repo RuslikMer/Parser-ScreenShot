@@ -51,7 +51,7 @@ namespace ParserNunit
                 {
                     string url = Convert.ToString(urls[k]);
                     driver.Close();
-                    driver = new EdgeDriver(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Helper"));
+                    driver = new EdgeDriver(@"C:\Users\r.merikanov\Downloads");
                     driver.Navigate().GoToUrl(url);
                 }
                 else if (k == urls.Count)
@@ -62,7 +62,7 @@ namespace ParserNunit
                 {
                     string url = Convert.ToString(urls[k + 1]);
                     driver.Close();
-                    driver = new EdgeDriver(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Helper"));
+                    driver = new EdgeDriver(@"C:\Users\r.merikanov\Downloads");
                     driver.Navigate().GoToUrl(url);
                 }
             }
@@ -130,7 +130,7 @@ namespace ParserNunit
                     catch (StackOverflowException)
                     {
                         driver.Close();
-                        driver = new EdgeDriver(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Helper"));
+                        driver = new EdgeDriver(@"C:\Users\r.merikanov\Downloads");
                         Action();
                     }
                 }

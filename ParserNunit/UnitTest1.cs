@@ -112,7 +112,7 @@ namespace ParserNunit
         {
             //using (var driver = new InternetExplorerDriver())
             //{
-            var driver = new EdgeDriver(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Helper"));
+            var driver = new EdgeDriver(@"C:\Users\r.merikanov\Downloads");
             //ESaS act = new ESaS(driver, Project);
             //act.Dir();
             GlobalFunctions glob = new GlobalFunctions(driver, Project);
