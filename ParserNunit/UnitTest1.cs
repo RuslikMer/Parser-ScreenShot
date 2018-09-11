@@ -31,9 +31,12 @@ namespace ParserNunit
         [OneTimeSetUp] // вызывается перед началом запуска всех тестов
         public void TestFixtureSetUp()
         {
-            //Project = "самтел";
-            //URL = "https://msk.sumtel.ru/";
+            //Project = "Согласие";
+            //URL = "https://www.soglasie.ru/";
             //sURL = "sitemap";
+            //GChrome = "SURL";
+            //FFox = "SURL";
+            //IExplorer = "T";
 
             Project = Environment.GetEnvironmentVariable("PROJECT");
             URL = Environment.GetEnvironmentVariable("URL");
@@ -68,7 +71,8 @@ namespace ParserNunit
             if (GChrome == "T")
             {
                 ChromeOptions co = new ChromeOptions();
-                co.AddExtension(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Helper\Adblocker-Genesis-Plus_v1.0.6.crx"));
+                //co.AddExtension(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Helper\Adblocker-Genesis-Plus_v1.0.6.crx"));
+                co.AddExtension(@"C:\Users\Adblocker-Genesis-Plus_v1.0.6.crx");
 
                 //using (var driver = new ChromeDriver(co))
                 //{

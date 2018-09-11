@@ -124,7 +124,9 @@ namespace ParserNunit
                     {
                         driver.Close();
                         ChromeOptions co = new ChromeOptions();
-                        co.AddExtension(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Helper\Adblocker-Genesis-Plus_v1.0.6.crx"));
+                        //co.AddExtension(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Helper\Adblocker-Genesis-Plus_v1.0.6.crx"));
+                        co.AddExtension(@"C:\Users\Adblocker-Genesis-Plus_v1.0.6.crx");
+
                         driver = new ChromeDriver(co);
                         Action();
                     }
