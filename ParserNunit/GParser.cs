@@ -85,7 +85,9 @@ namespace ParserNunit
 
             try
             {
-                var elements = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.TagName("a")));
+                //var elements = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.TagName("a")));
+                var elements = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.XPath("//a[@href]")));
+
                 glob.Action();
 
                 //for (int i = 0; i <= elements.Count; i++)
@@ -128,6 +130,8 @@ namespace ParserNunit
                         co.AddExtension(@"C:\Users\Adblocker-Genesis-Plus_v1.0.6.crx");
 
                         driver = new ChromeDriver(co);
+                        (new WebDriverWait(driver, timeout)).Until(driver1 => ((IJavaScriptExecutor)driver).ExecuteScript("return jQuery.active == 0").Equals("complete"));
+
                         Action();
                     }
                 }

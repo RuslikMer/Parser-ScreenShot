@@ -50,6 +50,8 @@ namespace ParserNunit
             {
                 string url = Convert.ToString(urls[k]);
                 driver.Close();
+                (new WebDriverWait(driver, timeout)).Until(driver1 => ((IJavaScriptExecutor)driver).ExecuteScript("return jQuery.active == 0").Equals("complete"));
+
                 driver = new InternetExplorerDriver();
                 driver.Navigate().GoToUrl(url);
             }
@@ -61,6 +63,8 @@ namespace ParserNunit
             {
                 string url = Convert.ToString(urls[k + 1]);
                 driver.Close();
+                (new WebDriverWait(driver, timeout)).Until(driver1 => ((IJavaScriptExecutor)driver).ExecuteScript("return jQuery.active == 0").Equals("complete"));
+
                 driver = new InternetExplorerDriver();
                 driver.Navigate().GoToUrl(url);
             }
@@ -86,7 +90,9 @@ namespace ParserNunit
 
             try
             {
-                var elements = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.TagName("a")));
+                //var elements = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.TagName("a")));
+                var elements = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.XPath("//a[@href]")));
+
                 glob.Action();
 
                 //for (int i = 0; i <= elements.Count; i++)
