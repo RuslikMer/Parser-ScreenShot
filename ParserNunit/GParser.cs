@@ -62,6 +62,7 @@ namespace ParserNunit
             }
             catch (ArgumentOutOfRangeException)
             {
+                driver.Close();
                 driver.Quit();
             }
         }

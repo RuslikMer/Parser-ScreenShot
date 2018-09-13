@@ -46,27 +46,35 @@ namespace ParserNunit
             int k = a++;
             Console.WriteLine(k);
 
-            if (k == (urls.Count - 1))
+            try
             {
-                string url = Convert.ToString(urls[k]);
-                driver.Close();
-                (new WebDriverWait(driver, timeout)).Until(driver1 => ((IJavaScriptExecutor)driver).ExecuteScript("return jQuery.active == 0").Equals("complete"));
+                if (k == (urls.Count - 1))
+                {
+                    string url = Convert.ToString(urls[k]);
+                    driver.Close();
+                    (new WebDriverWait(driver, timeout)).Until(driver1 => ((IJavaScriptExecutor)driver).ExecuteScript("return jQuery.active == 0").Equals("complete"));
 
-                driver = new InternetExplorerDriver();
-                driver.Navigate().GoToUrl(url);
+                    driver = new InternetExplorerDriver();
+                    driver.Navigate().GoToUrl(url);
+                }
+                else if (k == urls.Count)
+                {
+                    driver.Quit();
+                }
+                else
+                {
+                    string url = Convert.ToString(urls[k + 1]);
+                    driver.Close();
+                    (new WebDriverWait(driver, timeout)).Until(driver1 => ((IJavaScriptExecutor)driver).ExecuteScript("return jQuery.active == 0").Equals("complete"));
+
+                    driver = new InternetExplorerDriver();
+                    driver.Navigate().GoToUrl(url);
+                }
             }
-            else if (k == urls.Count)
+            catch (ArgumentOutOfRangeException)
             {
+                driver.Close();
                 driver.Quit();
-            }
-            else
-            {
-                string url = Convert.ToString(urls[k + 1]);
-                driver.Close();
-                (new WebDriverWait(driver, timeout)).Until(driver1 => ((IJavaScriptExecutor)driver).ExecuteScript("return jQuery.active == 0").Equals("complete"));
-
-                driver = new InternetExplorerDriver();
-                driver.Navigate().GoToUrl(url);
             }
         }
 
