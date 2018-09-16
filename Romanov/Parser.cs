@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Edge;
+using OpenQA.Selenium.IE;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Interactions;
@@ -30,6 +33,30 @@ namespace Romanov
             URL = URLL;
             sURL = sURLL;
         }
+
+        //public Parser(FirefoxDriver driver, string Project, string URLL, string sURLL)
+        //{
+        //    this.driver = driver;
+        //    this.Project = Project;
+        //    URL = URLL;
+        //    sURL = sURLL;
+        //}
+
+        //public Parser(InternetExplorerDriver driver, string Project, string URLL, string sURLL)
+        //{
+        //    this.driver = driver;
+        //    this.Project = Project;
+        //    URL = URLL;
+        //    sURL = sURLL;
+        //}
+
+        //public Parser(EdgeDriver driver, string Project, string URLL, string sURLL)
+        //{
+        //    this.driver = driver;
+        //    this.Project = Project;
+        //    URL = URLL;
+        //    sURL = sURLL;
+        //}
 
         public void GoUrl()
         {
@@ -83,11 +110,15 @@ namespace Romanov
 
         public void Parsing()
         {
+            //if ( driver == ChromeDriver driver) {
             GlobalFunctions glob = new GlobalFunctions(driver, Project);
+            //}
 
             try
             {
-                var elements = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.TagName("a")));
+                //var elements = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.TagName("a")));
+                var elements = (new WebDriverWait(driver, timeout)).Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.XPath("//a[@href]")));
+
                 glob.Action();
 
                 for (int i = 0; i <= elements.Count; i++)
@@ -99,7 +130,7 @@ namespace Romanov
                     try
                     {
                         var collections = elements[i].GetAttribute("href");
-                        //Console.WriteLine(elements[i].GetAttribute("href"));
+                        Console.WriteLine(elements[i].GetAttribute("href"));
 
                         foreach (string s in arr)
                         {
@@ -127,6 +158,8 @@ namespace Romanov
                         ChromeOptions co = new ChromeOptions();
                         co.AddExtension(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Helper\Adblocker-Genesis-Plus_v1.0.6.crx"));
                         driver = new ChromeDriver(co);
+                        //new
+                        (new WebDriverWait(driver, timeout)).Until(driver1 => ((IJavaScriptExecutor)driver).ExecuteScript("return jQuery.active == 0").Equals("complete"));
                         Action();
                     }
                     //}

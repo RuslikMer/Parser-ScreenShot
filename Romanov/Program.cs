@@ -27,14 +27,14 @@ namespace Romanov
 
             static void Main(string[] args)
             {
-                Project = "Туров";
-                URL = "https://turovart.com/ar/";
+                Project = "test";
+                URL = "https://www.soglasie.ru/";
                 sURL = "";
 
-                ChromePars();
-                FirefoxPars();
+                //ChromePars();
+                //FirefoxPars();
                 IEPars();
-                EdgePars();
+                //EdgePars();
 
                 void EdgePars()
                 {

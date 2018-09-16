@@ -111,14 +111,16 @@ namespace Romanov
 
         void NewDirectory()
         {
-            //string Url = driver.SwitchTo().Window(driver.WindowHandles.ToList().Last()).Url;
             string T = driver.SwitchTo().Window(driver.WindowHandles.ToList().Last()).Title;
+            string U = driver.SwitchTo().Window(driver.WindowHandles.ToList().Last()).Url;
 
             if (String.IsNullOrEmpty(T))
             {
                 T = "NoTitle";
             }
+
             //Encoding ascii = Encoding.ASCII;
+            //ascii();
             Console.WriteLine(T);
 
             char[] ch = new Char[] { '|', '*', '"', '?', ';', ':', ',', '.', '/', '[', ']', '{', '}', '=', '-', '_', '+', '#', '@', '!', '$', '%', '^', '&', '№' };
@@ -152,6 +154,7 @@ namespace Romanov
                 if (Directory.Exists(path) == false)
                 {
                     Directory.CreateDirectory(path);
+                    TXTFile(U);
                     Console.WriteLine("The directory was created successfully at {0}.", Directory.GetCreationTime(path));
                 }
             }
@@ -160,6 +163,29 @@ namespace Romanov
                 Console.WriteLine("The process failed: {0}", e.ToString());
             }
             finally { }
+        }
+
+        void TXTFile(string url)
+        {
+            try
+            {
+                //Pass the filepath and filename to the StreamWriter Constructor
+                StreamWriter sw = new StreamWriter(path + "URL.txt");
+
+                //Write a line of text
+                sw.WriteLine(url);
+
+                //Close the file
+                sw.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception: " + e.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Executing finally block.");
+            }
         }
     }
 }
