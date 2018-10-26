@@ -31,11 +31,11 @@ namespace ParserNunit
         [OneTimeSetUp] // вызывается перед началом запуска всех тестов
         public void TestFixtureSetUp()
         {
-            //Project = "Согласие";
-            //URL = "https://www.soglasie.ru/";
-            //sURL = "sitemap";
-            //GChrome = "SURL";
-            //FFox = "SURL";
+            //Project = "Гелиос";
+            //URL = "http://itech:itech@gelios.itech-test.ru/";
+            //sURL = "";
+            //GChrome = "T";
+            //FFox = "T";
             //IExplorer = "T";
 
             Project = Environment.GetEnvironmentVariable("PROJECT");
@@ -163,7 +163,7 @@ namespace ParserNunit
             {
                 Assert.AreEqual(1, 1);
             }
+            //}
         }
-    }
 }
 

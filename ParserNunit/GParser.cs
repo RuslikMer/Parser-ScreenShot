@@ -94,7 +94,6 @@ namespace ParserNunit
                 //for (int i = 0; i <= elements.Count; i++)
                 //{
                 int i = 0;
-
                 do
                 {
                     i++;
