@@ -89,7 +89,7 @@ namespace ParserNunit
             }
             else
             {
-                Assert.AreEqual(1,1);
+                Assert.AreEqual(1, 1);
             }
         }
 
@@ -163,7 +163,7 @@ namespace ParserNunit
             {
                 Assert.AreEqual(1, 1);
             }
-            //}
         }
+    }
 }
 
